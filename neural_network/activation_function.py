@@ -6,8 +6,8 @@ import random
 
 # sigmoid function
 def sigmoid(z):
-    pass
+    return 1.0/(1.0+np.exp(-z))
 
 # the derivative of sigmoid function
 def d_sigmoid(z):
-    pass
+    return sigmoid(z)*(1-sigmoid(z))
