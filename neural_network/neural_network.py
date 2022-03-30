@@ -31,6 +31,6 @@ class NeuralNetwork:
     def sgd(self):
         pass
 
-    def d_cost(self):
-        pass
+    def d_cost(self, output, y):
+        return (output - y)
     
