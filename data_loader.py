@@ -19,11 +19,11 @@ def mnist_loader():
         data_set = pickle.load(f, encoding='latin1')
         for i in range(len(data_set)):
             img_set, result_set = data_set[i]
-            # transpose each img data a vector
+            # transpose each img data into a vector
             img_list = [np.reshape(img,(784,1)) for img in img_set]
-            # encode each result to a vector
+            # encode each result into a vector
             result_list = [result_encoder(result) for result in result_set]
-            # Create a list of tuple from img vector and result vector
+            # Create a zip from img vector and result vector
             mnist_data.append(zip(img_list, result_list))
     return mnist_data
 
