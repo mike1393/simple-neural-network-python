@@ -3,8 +3,14 @@ import numpy as np
 import matplotlib.pyplot as plt
 # Build-in Packages
 import random
+import pickle
+import os
 # Local Packages
 import neural_network.activation_function as af
+
+def model_loader(path):
+    with open(path , 'rb') as f:
+        return pickle.load(f)
 
 class NeuralNetwork:
     # class members:
@@ -117,3 +123,12 @@ class NeuralNetwork:
         plt.ylabel('some numbers')
         plt.show()
     
+    def classify(self, data):
+        result = self.feed_forward(data)
+        idx = np.argmax(result)
+        return (idx, result[idx])
+
+    def save(self, path):
+        with open(path, 'wb') as f:
+            pickle.dump(self, f)
+            print(f"Model saved at {path}")
