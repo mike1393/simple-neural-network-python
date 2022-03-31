@@ -29,6 +29,3 @@ def mnist_loader():
             # Create a zip from img vector and result vector
             mnist_data.append(list(zip(img_list, result_list)))
     return mnist_data
-
-
-
