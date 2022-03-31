@@ -1,5 +1,5 @@
 # simple-neural-network-python
-This is a python project for self-validation of understanding of how neural networks work.<br>
+This is a python project for making sure that I REALLY understand of how neural networks work.<br>
 I finished this project by following the tutorials from [3Blue1Brown](https://www.3blue1brown.com/topics/neural-networks) and [Yujian Tang](https://pythonalgos.com/create-a-neural-network-from-scratch-in-python-3/).<br>
 * Data<br>
 The dataset used in this repo is the famous [MNIST dataset](http://yann.lecun.com/exdb/mnist/)<br>
