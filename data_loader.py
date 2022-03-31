@@ -24,7 +24,7 @@ def mnist_loader():
             # encode each result into a vector
             result_list = [result_encoder(result) for result in result_set]
             # Create a zip from img vector and result vector
-            mnist_data.append(zip(img_list, result_list))
+            mnist_data.append(list(zip(img_list, result_list)))
     return mnist_data
 
 
