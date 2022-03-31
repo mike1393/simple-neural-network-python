@@ -1,7 +1,10 @@
+# Third Party Packages
+import numpy as np
+# Build-in Packages
 import pickle
 import gzip
 import os
-import numpy as np
+
 
 DATA_DIR = os.path.join(os.path.dirname(__file__), "data")
 MNIST_DIR = os.path.join(DATA_DIR, "mnist.pkl.gz")
