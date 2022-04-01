@@ -21,7 +21,8 @@ class NeuralNetwork:
         self.layer_num = len(self.neurons)
         self.weights = [np.random.randn(j,i) for i,j in zip(self.neurons[:-1], self.neurons[1:])]
         self.biases = [np.random.randn(j,1) for j in self.neurons[1:]]
-        self.af, self.d_af = af.activate_method[af_name]
+        self.af_type = af_name
+        self.af, self.d_af = af.activate_method[self.af_type]
 
     
     def feed_forward(self, input_layer):
@@ -132,7 +133,20 @@ class NeuralNetwork:
             evaluation.append((cost, img_idx, predict, confidence, result))
         return evaluation
         
-
+    def get_detail(self):
+        detail = {
+            "structure":"",
+            "activation":self.af_type,
+        }
+        for idx,layer in enumerate(self.neurons):
+            detail["structure"]+=str(layer)
+            if idx == 0:
+                detail["structure"]+="(input layer) -> "
+            elif idx == self.layer_num-1:
+                detail["structure"]+="(output layer)"
+            else:
+                detail["structure"]+=" -> "
+        return detail
 
     def save(self, path):
         with open(path, 'wb') as f:
