@@ -120,6 +120,20 @@ class NeuralNetwork:
         idx = np.argmax(result)
         return (idx, result[idx])
 
+    def evaluate_testing_data(self, test_data):
+        evaluation = []
+        for img_idx, data in enumerate(test_data):
+            x,y = data
+            output_layer = self.feed_forward(x)
+            cost = np.sum(np.square(output_layer - y))
+            predict = np.argmax(output_layer)
+            confidence = output_layer[predict][0]
+            result = "Correct" if y[predict] == 1 else "Wrong"
+            evaluation.append((cost, img_idx, predict, confidence, result))
+        return evaluation
+        
+
+
     def save(self, path):
         with open(path, 'wb') as f:
             pickle.dump(self, f)
