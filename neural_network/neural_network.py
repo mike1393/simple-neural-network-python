@@ -1,6 +1,5 @@
 # Third Party Packages
 import numpy as np
-import matplotlib.pyplot as plt
 # Build-in Packages
 import random
 import pickle
@@ -23,7 +22,7 @@ class NeuralNetwork:
         self.weights = [np.random.randn(j,i) for i,j in zip(self.neurons[:-1], self.neurons[1:])]
         self.biases = [np.random.randn(j,1) for j in self.neurons[1:]]
         self.af, self.d_af = af.activate_method[af_name]
-        self.learning_curve=[]
+
     
     def feed_forward(self, input_layer):
         # update the activation value from first layer 
@@ -83,13 +82,10 @@ class NeuralNetwork:
                         for b, nb in zip(self.biases, nabla_b)]
 
     # Stochastic Gradient Descent
-    def sgd(self, training_data, epochs, batch_size, eta, test_data=None):
-        self.learning_curve = [0 for _ in range(epochs)]
+    def sgd(self, training_data, epochs, batch_size, eta, validate_data=None):
+        learning_curve = [0 for _ in range(epochs)]
         # get the length of the data
         number_of_training = len(training_data)
-        # do the same thing for test data if it exist
-        if test_data is not None:
-            number_of_test = len(test_data)
         # for each epochs
         for j in range(epochs):
             # shuffle training data and make it into batches
@@ -101,27 +97,23 @@ class NeuralNetwork:
                 # update weights and biases
                 self.update_feature(batch, eta)
             # if test exist
-            if test_data is not None:
+            if validate_data is not None:
                 # show training result
-                self.learning_curve[j] = self.evaluate(test_data)
-                print(f"Epoch {j}: {self.learning_curve[j]}/{number_of_test}")
+                learning_curve[j] = round(self.success_rate(validate_data),2)
+                print(f"Epoch {j}: {learning_curve[j]} %")
             # else show complete
             else:
                 print(f"Epoch {j} completed!")
+        return learning_curve
 
-    def evaluate(self, test_data):
+    def success_rate(self, test_data):
         # get the testing result index for each testing data
         # by applying feedforward to them
         testing_result = [(np.argmax(self.feed_forward(data)), truth)
                         for data, truth in test_data]
         # use the index to get the value from truth vector
         # sum them up and return the value 
-        return sum(int(y[idx]) for idx,y in testing_result)
-
-    def plot_learning_curve(self):
-        plt.plot(self.learning_curve)
-        plt.ylabel('some numbers')
-        plt.show()
+        return sum(int(y[idx]) for idx,y in testing_result)/len(test_data)*100
     
     def classify(self, data):
         result = self.feed_forward(data)
