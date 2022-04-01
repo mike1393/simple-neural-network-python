@@ -46,7 +46,7 @@ And all layers use sigmoid function as activation function.<br>
   ```
 Check out [save_model.py](https://github.com/mike1393/simple-neural-network-python/blob/main/save_model.py) or [find_best_and_worst.py](https://github.com/mike1393/simple-neural-network-python/blob/main/find_best_and_worst.py) to see more examples in how to use the pacakge.<br>
 #### :chart_with_upwards_trend: **Results**
-  * Best 6 samples<br>
+  * 6 images that performs the **best**<br>
   ![Best 6](https://raw.githubusercontent.com/mike1393/simple-neural-network-python/main/result/hidden30_sigmoid_best_6.png)
-  * Worst 6 samples<br>
+  * 6 images that performs the **worst**<br>
   ![Worst 6](https://raw.githubusercontent.com/mike1393/simple-neural-network-python/main/result/hidden30_sigmoid_worst_6.png)
